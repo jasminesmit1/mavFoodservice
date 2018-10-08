@@ -1,1 +1,1 @@
-web: gunicorn mavFood.wsgi --log-file –
+web: gunicorn mavFoodservice.wsgi --log-file –
