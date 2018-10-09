@@ -13,7 +13,7 @@ now = timezone.now()
 
 
 def home(request):
-   return render(request, 'home.html',
+   return render(request, 'crm/home.html',
                  {'crm': home})
 
 

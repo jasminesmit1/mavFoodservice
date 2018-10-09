@@ -1,5 +1,5 @@
 """
-WSGI config for mavFood project.
+WSGI config for mavFoodservice project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
