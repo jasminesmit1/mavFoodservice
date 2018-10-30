@@ -8,6 +8,7 @@ from .forms import LoginForm, UserRegistrationForm, ServiceForm, CustomerForm, P
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.db.models import Sum
+from django.core.mail import send_mail
 
 
 now = timezone.now()
@@ -28,9 +29,10 @@ def admin(request):
 
 @login_required
 def customer_list(request):
-    customer = Customer.objects.filter(created_date__lte=timezone.now())
-    return render(request, 'crm/customer_list.html',
-                 {'customers': customer})
+    if request.user.is_authenticated:
+        customer = Customer.objects.filter(created_date__lte=timezone.now())
+        return render(request, 'crm/customer_list.html',
+                                {'customers': customer})
 
 
 @login_required
@@ -47,7 +49,7 @@ def customer_new(request):
    else:
        form = ProductForm()
        # print("Else")
-   return render(request, 'crm/product_new.html', {'form': form})
+   return render(request, 'crm/customer_new.html', {'form': form})
 
 
 @login_required
@@ -199,10 +201,11 @@ def register(request):
                           {'new_user': new_user})
     else:
       user_form = UserRegistrationForm()
-
     return render(request, 'registration/register.html',
                   {'user_form': user_form})
 
 
+def email(request):
+    send_mail('password_reset_email.html')
 
 

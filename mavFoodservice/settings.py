@@ -35,16 +35,12 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9jmkej2b00lh8',
-        'USER': 'cmrxgqvuhabwed',
-        'PASSWORD': 'eb47025f815fc9573a1af7b5a2e798321a4e8e32bf5cbfd6777bc0af270df119',
-        'HOST':  'ec2-54-235-90-0.compute-1.amazonaws.com',
-        'PORT': '5432',
+
     }
 }
 
 try:
-    from local_settings import *
+    from .local_settings import *
 except ImportError:
     # Update database configuration with $DATABASE_URL.
     db_from_env = dj_database_url.config(conn_max_age=500)
@@ -56,12 +52,12 @@ except ImportError:
 
 INSTALLED_APPS = [
     'crm',
+    'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'mathfilters',
     'django.contrib.humanize',
 
@@ -156,8 +152,8 @@ os.path.join(BASE_DIR, 'static'),
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_REDIRECT_URL = '/home'
+LOGIN_URL = 'login'
 LOGOUT_REDIRECT_URL = '/login'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 

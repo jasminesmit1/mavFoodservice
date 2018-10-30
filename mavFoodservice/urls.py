@@ -26,6 +26,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('crm.urls')),
+    path('crm/', include('django.contrib.auth.urls')),
     #url(r'^login/$', views.login, name='login'),
     #url(r'^logout/$', views.logout, name='logout', kwargs={'next_page': '/'}),
     path('login/', LoginView.as_view(), name='login'),
